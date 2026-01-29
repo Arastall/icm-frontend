@@ -173,8 +173,8 @@ async function downloadProductsReport() {
     showReportLoading('Products Report');
 
     try {
-        const url = `${_serverURL}/Report/GetProductsReport/${year}/${month}`;
-        const filename = `Report_Products_FY${year}_SP${month}_${getTimestamp()}.xlsx`;
+        const url = `${_serverURL}/Report/GetProductsReport`;
+        const filename = `Report_Products_${getTimestamp()}.xlsx`;
         await downloadFile(url, filename);
     } catch (error) {
         console.error('Error:', error);
