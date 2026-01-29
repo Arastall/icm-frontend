@@ -5,7 +5,6 @@
 var _serverURL = ICM_CONFIG.getApiUrl();
 
 document.addEventListener('DOMContentLoaded', function () {
-    initPeriodSelectors();
     var input = document.getElementById('loginInput');
     input.addEventListener('keydown', function (e) {
         if (e.key === 'Enter') {
@@ -15,22 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     input.focus();
 });
-
-function initPeriodSelectors() {
-    var yearSelect = document.getElementById('yearSelect');
-    var now = new Date();
-    var currentYear = now.getFullYear();
-    for (var y = currentYear; y >= 2020; y--) {
-        var opt = document.createElement('option');
-        opt.value = String(y);
-        opt.textContent = String(y);
-        yearSelect.appendChild(opt);
-    }
-    // Default to current month
-    var monthSelect = document.getElementById('monthSelect');
-    var currentMonth = String(now.getMonth() + 1).padStart(2, '0');
-    monthSelect.value = currentMonth;
-}
 
 function toggleSection(header) {
     header.classList.toggle('collapsed');
@@ -68,8 +51,9 @@ function fmtMoney(val) {
 
 async function searchEmployee() {
     var login = document.getElementById('loginInput').value.trim();
-    var year = document.getElementById('yearSelect').value;
-    var month = document.getElementById('monthSelect').value;
+    var now = new Date();
+    var year = String(now.getFullYear());
+    var month = String(now.getMonth() + 1).padStart(2, '0');
     hideError();
 
     if (!login) { showError('Please enter an employee login.'); return; }
