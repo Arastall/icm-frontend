@@ -34,6 +34,21 @@
         }
         .btn-search:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
         .btn-search:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .autocomplete-dropdown {
+            position: absolute; top: 100%; left: 0; right: 0; z-index: 100;
+            background: white; border: 2px solid #e0e0e0; border-top: none; border-radius: 0 0 8px 8px;
+            max-height: 280px; overflow-y: auto; display: none; box-shadow: var(--shadow-md);
+        }
+        .autocomplete-dropdown.visible { display: block; }
+        .autocomplete-item {
+            padding: 10px 16px; cursor: pointer; font-size: 0.95em;
+            border-bottom: 1px solid #f0f0f0; transition: background 0.15s;
+        }
+        .autocomplete-item:hover, .autocomplete-item.active { background: #eef3fb; }
+        .autocomplete-item .emp-name { font-weight: 600; color: var(--blue2); }
+        .autocomplete-item .emp-login { color: #999; font-size: 0.85em; margin-left: 8px; }
+        .autocomplete-item:last-child { border-bottom: none; }
+
         .search-error { color: #e53935; font-size: 0.9em; margin-top: 8px; display: none; }
         .search-error.visible { display: block; }
 
@@ -207,13 +222,14 @@
         <div class="search-section" id="searchSection">
             <div class="search-card">
                 <h3>Search Employee</h3>
-                <p>Enter an employee login to view their complete summary.</p>
-                <div class="search-row">
-                    <input type="text" class="search-input" id="loginInput" placeholder="Enter employee login..." autocomplete="off">
-                    <button class="btn-search" id="btnSearch" onclick="searchEmployee()">
+                <p>Start typing an employee name to search.</p>
+                <div class="search-row" style="position: relative;">
+                    <input type="text" class="search-input" id="loginInput" placeholder="Type employee name..." autocomplete="off">
+                    <button class="btn-search" id="btnSearch" onclick="searchEmployee()" disabled>
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                         Search
                     </button>
+                    <div id="autocompleteDropdown" class="autocomplete-dropdown"></div>
                 </div>
                 <div class="search-error" id="searchError"></div>
             </div>

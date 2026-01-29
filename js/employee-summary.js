@@ -3,17 +3,104 @@
  */
 
 var _serverURL = ICM_CONFIG.getApiUrl();
+var _selectedLogin = '';
+var _acDebounce = null;
+var _acIndex = -1;
 
 document.addEventListener('DOMContentLoaded', function () {
     var input = document.getElementById('loginInput');
+    input.addEventListener('input', function () {
+        _selectedLogin = '';
+        document.getElementById('btnSearch').disabled = true;
+        var val = input.value.trim();
+        if (val.length < 1) { hideAutocomplete(); return; }
+        clearTimeout(_acDebounce);
+        _acDebounce = setTimeout(function () { fetchAutocomplete(val); }, 250);
+    });
     input.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
+        var dropdown = document.getElementById('autocompleteDropdown');
+        var items = dropdown.querySelectorAll('.autocomplete-item');
+        if (e.key === 'ArrowDown') {
             e.preventDefault();
-            searchEmployee();
+            _acIndex = Math.min(_acIndex + 1, items.length - 1);
+            updateAcHighlight(items);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            _acIndex = Math.max(_acIndex - 1, 0);
+            updateAcHighlight(items);
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            if (_acIndex >= 0 && items[_acIndex]) {
+                items[_acIndex].click();
+            } else if (_selectedLogin) {
+                searchEmployee();
+            }
+        } else if (e.key === 'Escape') {
+            hideAutocomplete();
         }
+    });
+    document.addEventListener('click', function (e) {
+        if (!e.target.closest('.search-row')) hideAutocomplete();
     });
     input.focus();
 });
+
+function fetchAutocomplete(value) {
+    fetch(_serverURL + '/Employees/SearchEmployee/' + encodeURIComponent(value))
+        .then(function (r) { return r.json(); })
+        .then(function (employees) {
+            var dropdown = document.getElementById('autocompleteDropdown');
+            dropdown.innerHTML = '';
+            _acIndex = -1;
+            if (!employees || employees.length === 0) {
+                dropdown.innerHTML = '<div class="autocomplete-item" style="color:#999;cursor:default;">No employees found</div>';
+                dropdown.classList.add('visible');
+                return;
+            }
+            employees.sort(function (a, b) {
+                var na = (a.lastName || '') + (a.fstName || '');
+                var nb = (b.lastName || '') + (b.fstName || '');
+                return na.localeCompare(nb);
+            });
+            employees.forEach(function (emp) {
+                var div = document.createElement('div');
+                div.className = 'autocomplete-item';
+                div.innerHTML = '<span class="emp-name">' + escHtml((emp.lastName || '') + ', ' + (emp.fstName || '')) + '</span><span class="emp-login">' + escHtml(emp.login || '') + '</span>';
+                div.addEventListener('click', function () {
+                    selectEmployee(emp);
+                });
+                dropdown.appendChild(div);
+            });
+            dropdown.classList.add('visible');
+        })
+        .catch(function () { hideAutocomplete(); });
+}
+
+function selectEmployee(emp) {
+    _selectedLogin = emp.login || '';
+    document.getElementById('loginInput').value = (emp.fstName || '') + ' ' + (emp.lastName || '') + ' (' + _selectedLogin + ')';
+    document.getElementById('btnSearch').disabled = false;
+    hideAutocomplete();
+    searchEmployee();
+}
+
+function updateAcHighlight(items) {
+    items.forEach(function (el, i) {
+        el.classList.toggle('active', i === _acIndex);
+    });
+    if (items[_acIndex]) items[_acIndex].scrollIntoView({ block: 'nearest' });
+}
+
+function hideAutocomplete() {
+    document.getElementById('autocompleteDropdown').classList.remove('visible');
+    _acIndex = -1;
+}
+
+function escHtml(s) {
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+}
 
 function toggleSection(header) {
     header.classList.toggle('collapsed');
@@ -50,13 +137,14 @@ function fmtMoney(val) {
 }
 
 async function searchEmployee() {
-    var login = document.getElementById('loginInput').value.trim();
+    var login = _selectedLogin || document.getElementById('loginInput').value.trim();
     var now = new Date();
     var year = String(now.getFullYear());
     var month = String(now.getMonth() + 1).padStart(2, '0');
     hideError();
+    hideAutocomplete();
 
-    if (!login) { showError('Please enter an employee login.'); return; }
+    if (!login) { showError('Please select an employee from the list.'); return; }
 
     document.getElementById('loadingOverlay').style.display = 'flex';
 
