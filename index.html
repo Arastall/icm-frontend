@@ -202,16 +202,7 @@
 
         <!-- Main Menu -->
         <div class="menu-box">
-            <!-- Employee Query -->
-            <div class="card" onclick="GoToPage('Employee_summary_new.aspx')">
-                <div class="icon-wrapper">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                </div>
-                <span class="label">Employee Query</span>
-            </div>
+            <!-- Employee Query (legacy removed - use Employee Summary in New Features) -->
 
             <!-- Position History -->
             <div class="card" onclick="GoToPage('Position_History.aspx')">
@@ -296,6 +287,45 @@
         </div>
 
         <div class="menu-box new-features">
+            <!-- Order Summary -->
+            <div class="card" onclick="GoToPage('OrderSummary.html')">
+                <div class="icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="8" y1="6" x2="21" y2="6"></line>
+                        <line x1="8" y1="12" x2="21" y2="12"></line>
+                        <line x1="8" y1="18" x2="21" y2="18"></line>
+                        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                    </svg>
+                </div>
+                <span class="label">Order Summary</span>
+            </div>
+
+            <!-- Employee Summary -->
+            <div class="card" onclick="GoToPage('EmployeeSummary.html')">
+                <div class="icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <span class="label">Employee Summary</span>
+            </div>
+
+            <!-- Reprocess Orders -->
+            <div class="card" onclick="GoToPage('ReprocessOrders.html')">
+                <div class="icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="17 1 21 5 17 9"></polyline>
+                        <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                        <polyline points="7 23 3 19 7 15"></polyline>
+                        <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                    </svg>
+                </div>
+                <span class="label">Reprocess Orders</span>
+            </div>
+
             <!-- Generate Reports -->
             <div class="card" onclick="GoToPage('GenerateDealsReports.html')">
                 <div class="icon-wrapper">
@@ -328,34 +358,6 @@
                     </svg>
                 </div>
                 <span class="label">Lock Sales Period</span>
-            </div>
-
-            <!-- Order Summary -->
-            <div class="card" onclick="GoToPage('OrderSummary.html')">
-                <div class="icon-wrapper">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="8" y1="6" x2="21" y2="6"></line>
-                        <line x1="8" y1="12" x2="21" y2="12"></line>
-                        <line x1="8" y1="18" x2="21" y2="18"></line>
-                        <line x1="3" y1="6" x2="3.01" y2="6"></line>
-                        <line x1="3" y1="12" x2="3.01" y2="12"></line>
-                        <line x1="3" y1="18" x2="3.01" y2="18"></line>
-                    </svg>
-                </div>
-                <span class="label">Order Summary</span>
-            </div>
-
-            <!-- Reprocess Orders -->
-            <div class="card" onclick="GoToPage('ReprocessOrders.html')">
-                <div class="icon-wrapper">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="17 1 21 5 17 9"></polyline>
-                        <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
-                        <polyline points="7 23 3 19 7 15"></polyline>
-                        <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
-                    </svg>
-                </div>
-                <span class="label">Reprocess Orders</span>
             </div>
 
             <!-- ICM Process -->
