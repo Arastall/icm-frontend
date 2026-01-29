@@ -1,0 +1,384 @@
+/**
+ * ICM - Process Runner Page Styles
+ * Specific styles for ICMProcessRunner.html
+ */
+
+/* ============================================
+   Runner Section
+   ============================================ */
+.runner-section {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 50px 40px;
+    box-shadow: var(--shadow-sm);
+    margin: 0 auto 30px auto;
+    max-width: 550px;
+    text-align: center;
+}
+
+.runner-section h3 {
+    margin: 0 0 12px;
+    font-size: 1.6em;
+    color: var(--black1);
+}
+
+.runner-section p {
+    margin: 0 0 30px;
+    color: var(--black2);
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+/* ============================================
+   Runner Icon
+   ============================================ */
+.runner-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 25px;
+    background: var(--gradient-teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all var(--transition-normal);
+}
+
+.runner-icon.running {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.runner-icon.success {
+    background: var(--gradient-green);
+}
+
+.runner-icon.error {
+    background: var(--gradient-orange);
+}
+
+/* ============================================
+   Run Button
+   ============================================ */
+.btn-run {
+    padding: 18px 50px;
+    background: var(--gradient-teal);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.2em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-width: 250px;
+}
+
+.btn-run:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-run:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-run.running {
+    background: var(--gradient-orange);
+}
+
+/* Button Spinner */
+.btn-spinner {
+    width: 22px;
+    height: 22px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* ============================================
+   Status Section
+   ============================================ */
+.status-section {
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 12px;
+    display: none;
+}
+
+.status-section.visible {
+    display: block;
+}
+
+.status-section.running {
+    background: rgba(102, 126, 234, 0.1);
+    border: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+.status-section.success {
+    background: rgba(0, 181, 118, 0.1);
+    border: 2px solid var(--green);
+}
+
+.status-section.error {
+    background: rgba(244, 67, 54, 0.1);
+    border: 2px solid var(--red1);
+}
+
+/* Status Title */
+.status-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.status-section.running .status-title { color: #667eea; }
+.status-section.success .status-title { color: var(--green); }
+.status-section.error .status-title { color: var(--red1); }
+
+/* Status Message */
+.status-message {
+    color: var(--black2);
+    font-size: 1em;
+    margin: 0;
+}
+
+/* Timer */
+.timer {
+    font-family: 'Courier New', monospace;
+    font-size: 1.4em;
+    font-weight: 600;
+    color: #667eea;
+    margin-top: 15px;
+}
+
+/* ============================================
+   Warning Notice
+   ============================================ */
+.warning-notice {
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid #ffc107;
+    border-radius: var(--border-radius-sm);
+    padding: 15px 20px;
+    margin-top: 25px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+}
+
+.warning-notice svg {
+    flex-shrink: 0;
+    color: #f59e0b;
+}
+
+.warning-notice p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #92400e;
+    line-height: 1.5;
+}
+
+/* ============================================
+   New Run Button
+   ============================================ */
+.btn-new-run {
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: #e2e8f0;
+    color: var(--black1);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: none;
+}
+
+.btn-new-run.visible {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-new-run:hover {
+    background: #cbd5e0;
+}
+
+/* ============================================
+   Process Steps Tracker
+   ============================================ */
+.steps-tracker {
+    margin-top: 30px;
+    padding: 25px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    text-align: left;
+    display: none;
+}
+
+.steps-tracker.visible {
+    display: block;
+}
+
+.steps-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.steps-header h4 {
+    margin: 0;
+    font-size: 1.1em;
+    color: var(--black1);
+}
+
+.steps-progress {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.steps-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid #e2e8f0;
+    transition: all var(--transition-fast);
+}
+
+.step-item:last-child {
+    border-bottom: none;
+}
+
+.step-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all var(--transition-fast);
+}
+
+/* Pending step */
+.step-item.pending .step-icon {
+    background: #e2e8f0;
+    color: #94a3b8;
+}
+
+.step-item.pending .step-icon::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #94a3b8;
+    border-radius: 50%;
+}
+
+/* In progress step */
+.step-item.in_progress .step-icon {
+    background: rgba(102, 126, 234, 0.15);
+    color: #667eea;
+}
+
+.step-item.in_progress .step-icon svg {
+    animation: spin 1s linear infinite;
+}
+
+/* Completed step */
+.step-item.completed .step-icon {
+    background: rgba(0, 181, 118, 0.15);
+    color: var(--green);
+}
+
+/* Error step */
+.step-item.error .step-icon {
+    background: rgba(244, 67, 54, 0.15);
+    color: var(--red1);
+}
+
+.step-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.step-name {
+    font-weight: 600;
+    color: var(--black1);
+    font-size: 0.95em;
+    margin-bottom: 2px;
+}
+
+.step-item.pending .step-name {
+    color: #94a3b8;
+}
+
+.step-item.in_progress .step-name {
+    color: #667eea;
+}
+
+.step-item.completed .step-name {
+    color: var(--green);
+}
+
+.step-item.error .step-name {
+    color: var(--red1);
+}
+
+.step-message {
+    font-size: 0.85em;
+    color: var(--black2);
+    margin: 0;
+}
+
+.step-time {
+    font-size: 0.8em;
+    color: #94a3b8;
+    white-space: nowrap;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 768px) {
+    .runner-section {
+        padding: 35px 25px;
+        margin: 0 15px 30px;
+    }
+
+    .runner-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .btn-run {
+        width: 100%;
+        min-width: unset;
+    }
+}

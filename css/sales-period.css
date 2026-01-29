@@ -1,0 +1,167 @@
+/**
+ * ICM - Sales Period Page Styles
+ * Specific styles for ManageSalesPeriod.html
+ */
+
+/* ============================================
+   Period Section
+   ============================================ */
+.period-section {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    box-shadow: var(--shadow-sm);
+    margin: 0 auto 30px auto;
+    max-width: 500px;
+}
+
+/* Period Header */
+.period-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.period-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: var(--gradient-teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.period-header h3 {
+    margin: 0 0 10px;
+    font-size: 1.4em;
+    color: var(--black1);
+}
+
+.period-header p {
+    margin: 0;
+    color: var(--black2);
+    font-size: 1em;
+}
+
+/* ============================================
+   Current Period Display
+   ============================================ */
+.current-period-display {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    border: 2px solid #cbd5e0;
+}
+
+.current-period-display label {
+    display: block;
+    font-size: 0.9em;
+    color: var(--black2);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.current-period-value {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--blue2);
+}
+
+/* ============================================
+   Period Form
+   ============================================ */
+.period-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+/* ============================================
+   Update Button
+   ============================================ */
+.btn-update {
+    margin-top: 10px;
+    padding: 16px 40px;
+    background: var(--gradient-teal);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.btn-update:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(102, 126, 234, 0.4);
+}
+
+.btn-update:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    background: #cbd5e0;
+}
+
+.btn-update.changed {
+    background: var(--gradient-green);
+    color: #1e3a5f;
+}
+
+.btn-update.changed:hover:not(:disabled) {
+    box-shadow: 0 4px 14px rgba(67, 233, 123, 0.4);
+}
+
+/* ============================================
+   Change Indicator
+   ============================================ */
+.change-indicator {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: var(--border-radius-xs);
+    color: var(--blue2);
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+.change-indicator.visible {
+    display: flex;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 768px) {
+    .period-section {
+        padding: 30px 20px;
+        margin: 0 15px 30px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .current-period-value {
+        font-size: 1.6em;
+    }
+}

@@ -1,0 +1,380 @@
+/**
+ * ICM - Adjustments Page Styles
+ * Specific styles for ManageAdjustments.html
+ */
+
+/* ============================================
+   Upload Section
+   ============================================ */
+.upload-section {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    box-shadow: var(--shadow-sm);
+    margin: 0 auto 30px auto;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Upload Area */
+.upload-area {
+    border: 3px dashed #cbd5e0;
+    border-radius: 12px;
+    padding: 40px 20px;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    background: #f8fafc;
+}
+
+.upload-area:hover,
+.upload-area.dragover {
+    border-color: var(--blue2);
+    background: rgba(34, 105, 219, 0.05);
+}
+
+.upload-area.has-file {
+    border-color: var(--green);
+    background: rgba(0, 181, 118, 0.05);
+}
+
+/* Upload Icon */
+.upload-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: var(--gradient-teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.upload-area h3 {
+    margin: 0 0 10px;
+    font-size: 1.3em;
+    color: var(--black1);
+}
+
+.upload-area p {
+    margin: 0;
+    color: var(--black2);
+    font-size: 1em;
+}
+
+.upload-area .file-hint {
+    margin-top: 10px;
+    font-size: 0.85em;
+    color: #a0aec0;
+}
+
+/* File Input */
+.file-input {
+    display: none;
+}
+
+/* File Name Badge */
+.file-name {
+    margin-top: 15px;
+    padding: 12px 20px;
+    background: var(--green);
+    color: white;
+    border-radius: var(--border-radius-xs);
+    font-weight: 500;
+    display: none;
+}
+
+.file-name.visible {
+    display: inline-block;
+}
+
+/* Check Button */
+.btn-check {
+    margin-top: 25px;
+    padding: 14px 40px;
+    background: var(--gradient-teal);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: none;
+}
+
+.btn-check.visible {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-check:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(102, 126, 234, 0.4);
+}
+
+.btn-check:disabled,
+.btn-check.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Disabled state for upload area when process is running */
+.upload-area.disabled {
+    border-color: #cbd5e0;
+    background: #f1f5f9;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.upload-area.disabled:hover {
+    border-color: #cbd5e0;
+    background: #f1f5f9;
+    transform: none;
+}
+
+.upload-area.disabled .upload-icon {
+    background: #94a3b8;
+}
+
+/* ============================================
+   Results Section
+   ============================================ */
+.results-section {
+    display: none;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.results-section.visible {
+    display: block;
+}
+
+/* Results Header */
+.results-header {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 24px 30px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.results-info h3 {
+    margin: 0 0 8px;
+    font-size: 1.5em;
+    color: var(--black1);
+}
+
+.results-info p {
+    margin: 0;
+    color: var(--black2);
+    font-size: 1.1em;
+}
+
+.results-info .count {
+    color: var(--blue2);
+    font-weight: 700;
+}
+
+/* Results Actions */
+.results-actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-validate {
+    padding: 14px 30px;
+    background: var(--gradient-green);
+    color: #1e3a5f;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-validate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(67, 233, 123, 0.4);
+}
+
+.btn-validate:disabled,
+.btn-validate.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-cancel {
+    padding: 14px 30px;
+    background: #e2e8f0;
+    color: var(--black1);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-cancel:hover {
+    background: #cbd5e0;
+}
+
+/* ============================================
+   Table Styles
+   ============================================ */
+.table-container {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.table-scroll {
+    overflow-x: auto;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.adjustments-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+
+.adjustments-table thead {
+    background: var(--gradient-header);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.adjustments-table th {
+    padding: 14px 12px;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.adjustments-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e2e8f0;
+    white-space: nowrap;
+}
+
+.adjustments-table tbody tr:hover {
+    background: rgba(34, 105, 219, 0.05);
+}
+
+.adjustments-table tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+.adjustments-table tbody tr:nth-child(even):hover {
+    background: rgba(34, 105, 219, 0.08);
+}
+
+/* ============================================
+   Process Section
+   ============================================ */
+.process-section {
+    display: none;
+    max-width: 600px;
+    margin: 30px auto 0;
+}
+
+.process-section.visible {
+    display: block;
+}
+
+.process-card {
+    background: var(--gradient-green);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 7px 25px rgba(67, 233, 123, 0.3);
+}
+
+.process-card h3 {
+    margin: 0 0 15px;
+    font-size: 1.5em;
+    color: #1e3a5f;
+}
+
+.process-card p {
+    margin: 0 0 25px;
+    color: #1e3a5f;
+    opacity: 0.8;
+    font-size: 1.1em;
+}
+
+.btn-process {
+    padding: 16px 40px;
+    background: #1e3a5f;
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 1.2em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-process:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(30, 58, 95, 0.4);
+}
+
+.btn-process:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 768px) {
+    .upload-section {
+        padding: 30px 20px;
+    }
+
+    .results-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .results-actions {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .btn-validate,
+    .btn-cancel {
+        flex: 1;
+        justify-content: center;
+    }
+}

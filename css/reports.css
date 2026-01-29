@@ -1,0 +1,226 @@
+/**
+ * ICM - Reports Page Styles
+ * Specific styles for GenerateDealsReports.html
+ */
+
+/* ============================================
+   Period Selector
+   ============================================ */
+.period-selector {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 20px 30px;
+    box-shadow: var(--shadow-sm);
+    margin: 0 auto 30px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 400px;
+}
+
+.period-label {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--blue2);
+}
+
+.period-controls {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.period-controls select {
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: var(--border-radius-sm);
+    font-size: 1em;
+    color: var(--black1);
+    background: #f8fafc;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    min-width: 100px;
+}
+
+.period-controls select:hover {
+    border-color: #cbd5e0;
+}
+
+.period-controls select:focus {
+    outline: none;
+    border-color: var(--blue2);
+    box-shadow: 0 0 0 3px rgba(34, 105, 219, 0.2);
+}
+
+/* ============================================
+   Reports Grid
+   ============================================ */
+.reports-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* ============================================
+   Report Card
+   ============================================ */
+.report-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 28px;
+    box-shadow: var(--shadow-sm), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.report-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Report Icon */
+.report-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.report-icon.purple { background: var(--gradient-teal); }
+.report-icon.blue { background: var(--gradient-blue); }
+.report-icon.green { background: var(--gradient-green); }
+.report-icon.orange { background: var(--gradient-orange); }
+
+/* Report Content */
+.report-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.report-content h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.4em;
+    font-weight: 600;
+    color: var(--black1);
+}
+
+.report-content p {
+    margin: 0 0 20px 0;
+    font-size: 1.2em;
+    color: var(--black2);
+    line-height: 1.5;
+}
+
+/* Report Button */
+.report-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 24px;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 1.2em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    color: white;
+    margin-top: auto;
+    width: 100%;
+}
+
+.report-btn:active {
+    transform: scale(0.98);
+}
+
+.report-btn svg {
+    flex-shrink: 0;
+}
+
+/* Report Button Variants */
+.report-btn.purple {
+    background: var(--gradient-teal);
+}
+
+.report-btn.purple:hover {
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46a1 100%);
+    box-shadow: 0 4px 14px rgba(102, 126, 234, 0.4);
+}
+
+.report-btn.blue {
+    background: linear-gradient(135deg, #4facfe 0%, #00c6fb 100%);
+}
+
+.report-btn.blue:hover {
+    background: linear-gradient(135deg, #3b9be9 0%, #00b4e6 100%);
+    box-shadow: 0 4px 14px rgba(79, 172, 254, 0.4);
+}
+
+.report-btn.green {
+    background: linear-gradient(135deg, #43e97b 0%, #38d9a9 100%);
+}
+
+.report-btn.green:hover {
+    background: linear-gradient(135deg, #38d56c 0%, #2fc89a 100%);
+    box-shadow: 0 4px 14px rgba(67, 233, 123, 0.4);
+}
+
+.report-btn.orange {
+    background: var(--gradient-orange);
+}
+
+.report-btn.orange:hover {
+    background: linear-gradient(135deg, #cf6d17 0%, #b84600 100%);
+    box-shadow: 0 4px 14px rgba(230, 126, 34, 0.4);
+}
+
+/* ============================================
+   Responsive - Tablet
+   ============================================ */
+@media (max-width: 900px) {
+    .reports-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .period-selector {
+        flex-direction: column;
+        padding: 20px;
+        gap: 12px;
+    }
+}
+
+/* ============================================
+   Responsive - Mobile
+   ============================================ */
+@media (max-width: 700px) {
+    .reports-container {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    .report-card {
+        padding: 24px 20px;
+    }
+
+    .report-icon {
+        width: 60px;
+        height: 60px;
+    }
+}
