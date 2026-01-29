@@ -3,6 +3,7 @@
  */
 
 var _serverURL = ICM_CONFIG.getApiUrl();
+var _currentOrderNumber = null;
 
 document.addEventListener('DOMContentLoaded', function () {
     var input = document.getElementById('orderInput');
@@ -72,6 +73,7 @@ async function searchOrder() {
         }
 
         var data = await response.json();
+        _currentOrderNumber = value;
         renderResults(data);
     } catch (err) {
         console.error(err);
@@ -274,4 +276,48 @@ function renderCreditAllocations(items) {
 function renderRollups(items) {
     document.getElementById('rollupCount').textContent = items.length;
     renderCreditTable(items, 'rollupTable');
+}
+
+async function reprocessThisOrder() {
+    if (!_currentOrderNumber) return;
+    if (!confirm('Reprocess order ' + _currentOrderNumber + '? This will reset its calculation data.')) return;
+
+    document.getElementById('loadingOverlay').style.display = 'flex';
+    document.getElementById('loadingOverlay').querySelector('h3').textContent = 'Reprocessing...';
+    document.getElementById('loadingOverlay').querySelector('p').textContent = 'Resetting order ' + _currentOrderNumber + ' for recalculation.';
+
+    try {
+        var response = await fetch(_serverURL + '/Orders/ReprocessOrders', {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify([_currentOrderNumber])
+        });
+
+        if (!response.ok) {
+            var errText = await response.text();
+            alert('Error: ' + (errText || response.statusText));
+            return;
+        }
+
+        var results = await response.json();
+        var r = results[0];
+        if (r.success) {
+            alert('✅ ' + r.message);
+            // Refresh the order summary
+            searchOrder();
+        } else {
+            alert('⚠️ ' + r.message);
+        }
+    } catch (err) {
+        alert('Connection error: ' + err.message);
+    } finally {
+        document.getElementById('loadingOverlay').style.display = 'none';
+        document.getElementById('loadingOverlay').querySelector('h3').textContent = 'Loading Order...';
+        document.getElementById('loadingOverlay').querySelector('p').textContent = 'Fetching order details from the server.';
+    }
+}
+
+function addManualAdjustment() {
+    window.location.href = 'ManageAdjustments.html';
 }
